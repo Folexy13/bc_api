@@ -3,6 +3,7 @@ const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
+const trackingID = require("./tracking");
 const ItemModel = require("../server/model/item.model");
 
 const app = express();
@@ -53,7 +54,6 @@ app.post("/add-to-track", async (req, res) => {
     shippingDuration,
     shippingDate,
     comingFrom,
-    trackingNo,
   } = req.body;
   try {
     if (!trackingNo) {
@@ -72,7 +72,7 @@ app.post("/add-to-track", async (req, res) => {
       shippingDate,
       shippingDuration,
       comingFrom,
-      trackingNo,
+      trackingNo: trackingID,
     });
     const savedItem = newItem.save();
 
