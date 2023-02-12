@@ -93,6 +93,7 @@ app.post("/add-to-track", async (req, res) => {
 //login admin
 app.post("/login", async (req, res) => {
   let { username, password } = req.body;
+  let token = jwt.sign();
   try {
     if (
       username !== process.env.ADMIN_USERNAME ||
@@ -106,7 +107,7 @@ app.post("/login", async (req, res) => {
     return res.status(200).send({
       status: true,
       message: "Login successful",
-      token,
+      // token,
     });
   } catch (error) {
     console.log(error);
