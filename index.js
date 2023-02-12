@@ -94,5 +94,11 @@ app.post("/add-to-track", async (req, res) => {
 app.get("/item/:trackingNo", async (req, res) => {
   const { trackingNo } = req.params;
   const itemInstance = await ItemModel.findOne({ trackingNo });
+  if (!itemInstance) {
+    return res.status(200).send({
+      status: false,
+      payload: {},
+    });
+  }
   return res.status(200).send(itemInstance);
 });
