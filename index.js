@@ -96,7 +96,7 @@ app.post("/login", async (req, res) => {
   try {
     if (
       username !== process.env.ADMIN_USERNAME ||
-      password !== process.env.password
+      password !== process.env.ADMIN_PASSWORD
     ) {
       return res.status(500).send({
         status: false,
