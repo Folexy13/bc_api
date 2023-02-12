@@ -44,7 +44,7 @@ app.get("/", (req, res) => {
 app.post("/add-to-track", async (req, res) => {
   const {
     senderName,
-    senderAddress,
+    recieverAddress,
     senderEmail,
     senderPhone,
     recieverName,
@@ -63,7 +63,7 @@ app.post("/add-to-track", async (req, res) => {
     }
     const newItem = new ItemModel({
       senderName,
-      senderAddress,
+      recieverAddress,
       senderPhone,
       senderEmail,
       recieverEmail,

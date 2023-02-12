@@ -6,7 +6,7 @@ const itemSchema = new Schema({
     type: String,
     required: true,
   },
-  senderAddress: {
+  recieverAddress: {
     type: String,
     required: true,
   },
