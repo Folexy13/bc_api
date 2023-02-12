@@ -90,6 +90,33 @@ app.post("/add-to-track", async (req, res) => {
   }
 });
 
+//login admin
+app.post("/login", async (req, res) => {
+  let { username, password } = req.body;
+let 
+  try {
+    if (
+      username !== process.env.ADMIN_USERNAME ||
+      password !== process.env.password
+    ) {
+      return res.status(500).send({
+        status: false,
+        message: "Unauthorized Personnel, What are you doing here?",
+      });
+    }
+    return res.status(200).send({
+      status: true,
+      message: "Login successful",
+      token,
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).send({
+      status: false,
+      message: `An error - ${error}. Contact the Admin`,
+    });
+  }
+});
 //Get Tracked goods
 app.get("/item/:trackingNo", async (req, res) => {
   const { trackingNo } = req.params;
