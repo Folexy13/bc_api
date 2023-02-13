@@ -26,6 +26,10 @@ const itemSchema = new Schema({
     type: String,
     required: true,
   },
+  packageShipped: {
+    type: String,
+    required: true,
+  },
   shippingDuration: {
     type: Number,
     required: true,
@@ -44,7 +48,8 @@ const itemSchema = new Schema({
   },
   status: {
     type: String,
-    enum: ["delivered", "pending", "canceled", "shipped"],
+    default: "Shipped",
+    enum: ["Delivered", "Pending", "Canceled", "Shipped"],
   },
 });
 

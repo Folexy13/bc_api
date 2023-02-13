@@ -52,6 +52,7 @@ app.post("/add-to-track", async (req, res) => {
     recieverEmail,
     shippingDuration,
     shippingDate,
+    packageShipped,
     comingFrom,
   } = req.body;
   try {
@@ -69,6 +70,7 @@ app.post("/add-to-track", async (req, res) => {
       recieverEmail,
       recieverName,
       shippingDate,
+      packageShipped,
       shippingDuration,
       comingFrom,
       trackingNo: trackingNo(),
