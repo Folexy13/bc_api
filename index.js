@@ -4,6 +4,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const ItemModel = require("./model/item.model");
+const trackingNo = require("./tracking");
 
 const app = express();
 
@@ -52,7 +53,6 @@ app.post("/add-to-track", async (req, res) => {
     shippingDuration,
     shippingDate,
     comingFrom,
-    trackingNo,
   } = req.body;
   try {
     if (!trackingNo) {
@@ -71,14 +71,15 @@ app.post("/add-to-track", async (req, res) => {
       shippingDate,
       shippingDuration,
       comingFrom,
-      trackingNo,
+      trackingNo: trackingNo(),
     });
     const savedItem = newItem.save();
 
     if (savedItem) {
       return res.status(200).send({
         status: true,
-        message: "tem added successfully",
+        message: "item added successfully",
+        trackingNo: newItem.trackingNo,
       });
     }
   } catch (error) {
@@ -86,6 +87,7 @@ app.post("/add-to-track", async (req, res) => {
     return res.status(500).send({
       status: false,
       message: `An error - ${error} occured`,
+      trackingNo: newItem.trackingNo,
     });
   }
 });

@@ -27,7 +27,7 @@ const itemSchema = new Schema({
     required: true,
   },
   shippingDuration: {
-    type: String,
+    type: Number,
     required: true,
   },
   shippingDate: {
