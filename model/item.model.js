@@ -42,6 +42,10 @@ const itemSchema = new Schema({
     type: String,
     required: true,
   },
+  status: {
+    type: String,
+    enum: ["delivered", "pending", "canceled", "shipped"],
+  },
 });
 
 const Item = mongoose.model("Item", itemSchema);

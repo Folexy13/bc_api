@@ -78,8 +78,8 @@ app.post("/add-to-track", async (req, res) => {
     if (savedItem) {
       return res.status(200).send({
         status: true,
-        message: "item added successfully",
-        trackingNo: newItem.trackingNo,
+        message:
+          "item added successfully,Item tracking no is : " + newItem.trackingNo,
       });
     }
   } catch (error) {
