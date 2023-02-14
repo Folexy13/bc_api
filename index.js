@@ -71,6 +71,7 @@ app.post("/add-to-track", async (req, res) => {
       recieverName,
       shippingDate,
       packageShipped,
+      status: "Pending",
       shippingDuration,
       comingFrom,
       trackingNo: trackingNo(),
@@ -81,7 +82,8 @@ app.post("/add-to-track", async (req, res) => {
       return res.status(200).send({
         status: true,
         message:
-          "item added successfully,Item tracking no is : " + newItem.trackingNo,
+          "item added successfully, /n Item tracking no is : " +
+          newItem.trackingNo,
       });
     }
   } catch (error) {
@@ -131,4 +133,23 @@ app.get("/item/:trackingNo", async (req, res) => {
     });
   }
   return res.status(200).send(itemInstance);
+});
+
+app.put("/item/:trackingNo", async (req, res) => {
+  const { trackingNo } = req.params;
+  const { status } = req.body;
+  try {
+    const itemInstance = await ItemModel.findOneAndUpdate(
+      { trackingNo },
+      { status }
+    );
+    if (itemInstance) {
+      return res.status(200).send({
+        status: true,
+        message: "Status changed successfully",
+      });
+    }
+  } catch (error) {
+    console.log("error", error);
+  }
 });
