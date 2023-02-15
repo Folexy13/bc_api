@@ -145,7 +145,7 @@ app.get("/item", async (req, res) => {
   }
   return res.status(200).send(itemInstance.slice(-10));
 });
-app.put("/item/:trackingNo", async (req, res) => {
+app.post("/item/:trackingNo", async (req, res) => {
   const { trackingNo } = req.params;
   const { status } = req.body;
   try {
