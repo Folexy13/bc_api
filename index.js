@@ -135,6 +135,16 @@ app.get("/item/:trackingNo", async (req, res) => {
   return res.status(200).send(itemInstance);
 });
 
+app.get("/item", async (req, res) => {
+  const itemInstance = await ItemModel.find();
+  if (!itemInstance) {
+    return res.status(200).send({
+      status: false,
+      payload: {},
+    });
+  }
+  return res.status(200).send(itemInstance.slice(-10));
+});
 app.put("/item/:trackingNo", async (req, res) => {
   const { trackingNo } = req.params;
   const { status } = req.body;
