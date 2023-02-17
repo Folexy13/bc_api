@@ -147,16 +147,17 @@ app.get("/item", async (req, res) => {
 });
 app.post("/item/:trackingNo", async (req, res) => {
   const { trackingNo } = req.params;
-  const { status } = req.body;
+  const { status, location } = req.body;
   try {
-    const itemInstance = await ItemModel.findOneAndUpdate(
-      { trackingNo },
-      { status }
-    );
+    const itemInstance = status
+      ? await ItemModel.findOneAndUpdate({ trackingNo }, { status })
+      : await ItemModel.findOneAndUpdate({ trackingNo }, { location });
     if (itemInstance) {
       return res.status(200).send({
         status: true,
-        message: "Status changed successfully",
+        message: status
+          ? "Status updated successfully"
+          : "Location updated succesfully",
       });
     }
   } catch (error) {
