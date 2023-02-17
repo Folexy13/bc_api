@@ -75,6 +75,7 @@ app.post("/add-to-track", async (req, res) => {
       shippingDuration,
       comingFrom,
       trackingNo: trackingNo(),
+      location: "---",
     });
     const savedItem = newItem.save();
 
@@ -82,7 +83,7 @@ app.post("/add-to-track", async (req, res) => {
       return res.status(200).send({
         status: true,
         message:
-          "item added successfully, /n Item tracking no is : " +
+          "item added successfully, Item tracking no is : " +
           newItem.trackingNo,
       });
     }
