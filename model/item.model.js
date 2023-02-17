@@ -49,7 +49,10 @@ const itemSchema = new Schema({
   status: {
     type: String,
     default: "Pending",
-    enum: ["Delivered", "Pending", "Canceled", "Shipped"],
+  },
+  location: {
+    type: String,
+    required: true,
   },
 });
 
